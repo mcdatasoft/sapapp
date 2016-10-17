@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="harborModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="OCRD_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cardcode" Type="varchar" Mode="In" />
+          <Parameter Name="cardname" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="OCRD_Exists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cardcode" Type="varchar" Mode="In" />
+          <Parameter Name="cardname" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="exists" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="OCRD_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cardcode" Type="varchar" Mode="In" />
+          <Parameter Name="cardname" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="OCRD_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cardcode" Type="varchar" Mode="In" />
+          <Parameter Name="cardname" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="OCRD_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cardcode" Type="varchar" Mode="In" />
+          <Parameter Name="cardname" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="harborModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="harborModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="sapEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="OCRD_Delete">
+            <Parameter Name="cardcode" Mode="In" Type="String" />
+            <Parameter Name="cardname" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OCRD_Exists">
+            <Parameter Name="cardcode" Mode="In" Type="String" />
+            <Parameter Name="cardname" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="exists" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="OCRD_Insert">
+            <Parameter Name="cardcode" Mode="In" Type="String" />
+            <Parameter Name="cardname" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OCRD_Select" ReturnType="Collection(harborModel.OCRD_Select_Result)">
+            <Parameter Name="cardcode" Mode="In" Type="String" />
+            <Parameter Name="cardname" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OCRD_Update">
+            <Parameter Name="cardcode" Mode="In" Type="String" />
+            <Parameter Name="cardname" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="OCRD_Select_Result">
+          <Property Type="String" Name="cardcode" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="cardname" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="harborModelStoreContainer" CdmEntityContainer="sapEntities" >
+          <FunctionImportMapping FunctionImportName="OCRD_Delete" FunctionName="harborModel.Store.OCRD_Delete" />
+          <FunctionImportMapping FunctionImportName="OCRD_Exists" FunctionName="harborModel.Store.OCRD_Exists" />
+          <FunctionImportMapping FunctionImportName="OCRD_Insert" FunctionName="harborModel.Store.OCRD_Insert" />
+          <FunctionImportMapping FunctionImportName="OCRD_Select" FunctionName="harborModel.Store.OCRD_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="harborModel.OCRD_Select_Result">
+                <ScalarProperty Name="cardcode" ColumnName="cardcode" />
+                <ScalarProperty Name="cardname" ColumnName="cardname" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OCRD_Update" FunctionName="harborModel.Store.OCRD_Update" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
